@@ -11,6 +11,7 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "asia-southeast1-docker.pkg.dev/devops-skills-sharing/skilllane/skilllane-crud-demo:develop-1dd4dc4"
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
