@@ -9,7 +9,7 @@ services:
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
       - 'POSTGRESQL_PASSWORD=123'
-      - 'POSTGRESQL_USERNAME=postgres'
+      - 'POSTGRESQL_USERNAME=demo'
       - 'POSTGRESQL_DATABASE=testdb'
 
   crud-api:
