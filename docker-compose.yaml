@@ -16,7 +16,7 @@ services:
     hostname: crud-api
     restart: always
     ports:
-    - 8080:80
+    - 8080:8080
     logging:
       driver: "json-file"
       options: 
