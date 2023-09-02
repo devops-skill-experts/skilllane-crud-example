@@ -1,0 +1,33 @@
+version: '3'
+volumes:
+  postgresql_data: {}
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:15
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+    environment:
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'POSTGRESQL_PASSWORD=123'
+      - 'POSTGRESQL_USERNAME=demo'
+      - 'POSTGRESQL_DATABASE=testdb'
+
+  crud-api:
+    hostname: crud-api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgresql
+
+  nginx:
+    hostname: nginx
+    restart: always
+    ports:
+      - 8080:80 # Use external port to 8080 because port 80 might already been used
+    image: nginx:1.25.2
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - crud-api
