@@ -9,11 +9,10 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 
-# Bundle app source
 COPY ./app .
-COPY server.js ./
 
-RUN ls -lrt
+WORKDIR /usr/src
+COPY server.js ./
 
 EXPOSE 8080
 CMD [ "node", "server.js" ]
