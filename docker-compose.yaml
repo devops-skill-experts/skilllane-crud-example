@@ -20,6 +20,11 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgresql
+    environment:
+      - 'DB_HOST=postgresql'
+      - 'DB_USER=demo'
+      - 'DB_PASSWORD=123'
+      - 'DB_NAME=testdb'
 
   nginx:
     hostname: nginx
