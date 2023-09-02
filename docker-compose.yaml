@@ -16,12 +16,7 @@ services:
     hostname: crud-api
     restart: always
     ports:
-    - 8080:8080
-    logging:
-      driver: "json-file"
-      options: 
-        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
-    #image: "asia-southeast1-docker.pkg.dev/devops-skills-sharing/skilllane/skilllane-crud-demo:develop-1dd4dc4"
+    - 8080:8080 # Use external port to 8080 because port 80 might already been used
     build:
       context: .
       dockerfile: Dockerfile
