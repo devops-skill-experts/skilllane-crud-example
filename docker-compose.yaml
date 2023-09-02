@@ -1,0 +1,16 @@
+version: '3'
+volumes:
+  pgsql: {}
+services:
+  crud-api:
+    hostname: crud-api
+    restart: always
+    ports:
+    - 80:80 
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    build:
+      context: .
+      dockerfile: Dockerfile
