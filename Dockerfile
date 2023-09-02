@@ -10,9 +10,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY ./app .
-
-WORKDIR /usr/src
-COPY server.js ./
+COPY server.js /usr/src
 
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD [ "node", "/usr/src/server.js" ]
