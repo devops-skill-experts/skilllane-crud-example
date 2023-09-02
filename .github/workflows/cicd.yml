@@ -75,7 +75,8 @@ jobs:
       id: prep
       run: |
         DOCKER_IMAGE=promid/${{matrix.service}}
-        GCR_IMAGE=asia-southeast1-docker.pkg.dev/devops-skills-sharing/skilllane/${{matrix.service}}
+        GCR_IMAGE=gcr.io/its-artifact-commons/${{matrix.service}}
+
         VERSION=latest
         GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
         ENV=dev
