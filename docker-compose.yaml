@@ -15,5 +15,3 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - /usr/src/app/node_modules
