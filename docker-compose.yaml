@@ -11,6 +11,11 @@ services:
       - 'POSTGRESQL_PASSWORD=123'
       - 'POSTGRESQL_USERNAME=demo'
       - 'POSTGRESQL_DATABASE=testdb'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   crud-api:
     hostname: crud-api
@@ -19,7 +24,13 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - postgresql
+      postgresql:
+        condition: service_healthy
+    environment:
+      - 'DB_HOST=postgresql'
+      - 'DB_USER=demo'
+      - 'DB_PASSWORD=123'
+      - 'DB_NAME=testdb'
 
   nginx:
     hostname: nginx
