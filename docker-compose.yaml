@@ -15,10 +15,19 @@ services:
   crud-api:
     hostname: crud-api
     restart: always
-    ports:
-    - 8080:8080 # Use external port to 8080 because port 80 might already been used
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       - postgresql
+
+  nginx:
+    hostname: nginx
+    restart: always
+    ports:
+      - 8080:80 # Use external port to 8080 because port 80 might already been used
+    image: nginx:1.25.2
+    volumes:
+      - ${PWD}/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - crud-api
