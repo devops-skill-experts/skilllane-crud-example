@@ -8,6 +8,9 @@ services:
       - 'postgresql_data:/bitnami/postgresql'
     environment:
       - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'POSTGRESQL_PASSWORD=123'
+      - 'POSTGRESQL_USERNAME=postgres'
+      - 'POSTGRESQL_DATABASE=testdb'
 
   crud-api:
     hostname: crud-api
