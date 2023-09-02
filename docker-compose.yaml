@@ -28,6 +28,6 @@ services:
       - 8080:80 # Use external port to 8080 because port 80 might already been used
     image: nginx:1.25.2
     volumes:
-      - ${PWD}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - crud-api
