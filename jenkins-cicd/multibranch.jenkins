@@ -8,7 +8,6 @@ multibranchPipelineJob('CRUD-API'){
                     id = 'skilllane-crud-example'
                     remote('https://github.com/devops-skill-experts/skilllane-crud-example.git')
                     credentialsId('')
-                    includes('develop|main|master')
                     traits {
                         gitBranchDiscovery()
                         gitTagDiscovery()
