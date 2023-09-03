@@ -1,0 +1,29 @@
+#!/usr/bin/env groovy
+
+multibranchPipelineJob('CRUD-API'){
+    branchSources {
+        branchSource {
+            source {
+                git {
+                    id = 'skilllane-crud-example'
+                    remote('https://github.com/devops-skill-experts/skilllane-crud-example.git')
+                    credentialsId('')
+                    traits {
+                        gitBranchDiscovery()
+                        gitTagDiscovery()
+                    }
+                }
+            }
+            strategy {
+                defaultBranchPropertyStrategy {
+                    props {
+                        noTriggerBranchProperty()
+                    }
+                }
+            }
+        }
+    }
+
+    displayName('CRUD-API Multi-branch')
+    orphanedItemStrategy { discardOldItems { numToKeep(-1) } }
+}
