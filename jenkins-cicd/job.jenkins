@@ -1,0 +1,31 @@
+#!/usr/bin/env groovy
+
+pipelineJob('crud-api') {
+    displayName('CRUD API CI/CD')
+
+    logRotator {
+        numToKeep(10)
+        daysToKeep(30)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/devops-skill-experts/skilllane-crud-example.git')
+                        credentials('jenkins-operator')
+                    }
+                    branches('*/develop')
+                }
+            }
+            scriptPath('jenkins-cicd/pipeline.jenkins')
+        }
+    }
+}
